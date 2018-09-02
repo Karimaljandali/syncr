@@ -1,15 +1,20 @@
+//Pretty much copy and pasted from https://developers.google.com/youtube/iframe_api_reference
+//Many great examples if you've never seen it before, I didn't even know it existed when this
+//was just an idea.
 export function urlRegex(url){
 //Will match www.youtube.com/watch?v= as well as https://www.youtube.com/watch?v=
   let regex = /.*www\.youtube\.com\/watch\?v=/,
   match = regex.test(url),
-  id;
+  id = [];
 
-  //If there wasn't a match for now just log an error;
+  //If it's a valid youtube url(if it passes the regex check) then
+  //split the id from the url to be sent to construct the youtube player
+  //else return -1 and use that value to do conditional rendering later
+  //i.e an error message that what you entered isn't a youtube url
   if(match){
     id = url.split(regex);
   }else{
-    console.log("That was not a youtube URL");
-    return 0;
+    return -1;
   }
   return id[1];
 }
@@ -49,9 +54,10 @@ export function onYouTubeIframeAPIReady(id) {
   //use the standard provided by Google. PlayerVars origin setting
   //MUST be set or else you will receive a Failed To Execute 'postMessage'
   //error which basically means you cannot use any of the API.
+  console.log(id);
   var player = new window.YT.Player('player', {
-    height: '390',
-    width: '640',
+    height: '480vw',
+    width: '90%',
     videoId: id,
     playerVars: {
       'origin': "http://localhost:3000",

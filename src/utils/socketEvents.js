@@ -1,7 +1,15 @@
 import socketIOClient from 'socket.io-client';
+import {onYouTubeIframeAPIReady} from './playerUtils';
 
 const endpoint = 'http://localhost:8000';
-const socket = socketIOClient(endpoint);
+var socket = {};
+
+try{
+  socket = socketIOClient(endpoint);
+}
+catch(err){
+  console.log(err);
+}
 
 const Events = {
   on:{
@@ -10,14 +18,9 @@ const Events = {
         console.log(message);
       })
     },
-    buttonPress(){
-      socket.on('button press', (message) => {
-        console.log(message);
-      })
-    },
-    youtubeStart(){
-      socket.on('youtube start', (message) => {
-        console.log(message);
+    youtubePlayerCreated(){
+      socket.on('youtube player created', (message) => {
+        onYouTubeIframeAPIReady(message[0]);
       })
     }
   },
@@ -25,11 +28,8 @@ const Events = {
     chatMessage(message){
       socket.emit('chat message', `User: ${message[0]} said ${message[1]}`);
     },
-    buttonPress(message){
-      socket.emit('button press', message);
-    },
-    youtubeStart(message){
-      socket.emit('youtube start', message)
+    youtubePlayerCreated(message){
+      socket.emit('youtube player created', message)
     }
   }
 }
