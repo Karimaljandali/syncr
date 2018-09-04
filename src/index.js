@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Syncr from './App';
+import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './styles/main.css';
+import './styles/hover.css';
+import 'emoji-mart/css/emoji-mart.css'
 
-ReactDOM.render(<Syncr/>, document.getElementById('root'));
+ReactDOM.render(<App/>, document.getElementById('root'));
 registerServiceWorker();

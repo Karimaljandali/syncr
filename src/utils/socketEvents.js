@@ -1,5 +1,5 @@
 import socketIOClient from 'socket.io-client';
-import {onYouTubeIframeAPIReady} from './playerUtils';
+import {onYouTubeIframeAPIReady} from './youtubeUtils';
 
 const endpoint = 'http://localhost:8000';
 var socket = {};

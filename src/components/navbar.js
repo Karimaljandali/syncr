@@ -1,120 +1,88 @@
-import React, { Component } from 'react';
-import _ from "lodash";
+import React from 'react';
 import {
   Container,
   Icon,
   Image,
   Menu,
   Sidebar,
-  Responsive
+  Responsive,
+  Dropdown,
+  Search
 } from "semantic-ui-react";
 import logo from '../img/sync.png';
 
-const NavBarMobile = ({
-  children,
-  leftItems,
-  onPusherClick,
-  onToggle,
-  rightItems,
-  visible
-}) => (
-  <Sidebar.Pushable>
-    <Sidebar
-      as={Menu}
-      animation="overlay"
-      icon="labeled"
-      inverted
-      items={leftItems}
-      vertical
-      visible={visible}
-    />
-    <Sidebar.Pusher
-      dimmed={visible}
-      onClick={onPusherClick}
-      style={{ minHeight: "0vh" }}
-    >
-      <Menu fixed="top" inverted>
-        <Menu.Item>
-          <Image size="mini" src={logo} />
-        </Menu.Item>
-        <Menu.Item onClick={onToggle}>
-          <Icon name="sidebar" />
-        </Menu.Item>
-        <Menu.Menu position="right">
-          {_.map(rightItems, item => <Menu.Item {...item} />)}
-        </Menu.Menu>
-      </Menu>
-      {children}
-    </Sidebar.Pusher>
-  </Sidebar.Pushable>
-);
+const navbarSearchTest = [
+{key: '808_this', text: '808_this', value: '808_this'},
+{key: 'bitcoin', text: 'bitcoin', value: 'bitcoin'},
+]
 
-const NavBarDesktop = ({ leftItems, rightItems }) => (
+const NavbarDesktop = (props) => (
   <Menu fixed="top" inverted>
     <Menu.Item>
       <Image size="mini" src={logo} />
     </Menu.Item>
-    {_.map(leftItems, item => <Menu.Item {...item} />)}
-    <Menu.Menu position="right">
-      {_.map(rightItems, item => <Menu.Item {...item} />)}
-    </Menu.Menu>
-  </Menu>
-);
+     <Menu.Item as='a'>
+       <div className='hvr-grow'>
+         <Icon size='big' name='home'/>
+       </div>
+     </Menu.Item>
+      <Search
+        placeholder='Search For Rooms'
+        className='centered-search'
+      />
+      <Menu.Menu position='right'></Menu.Menu>
+          <Dropdown floating item text='Make A Room'>
+           <Dropdown.Menu>
+             <Dropdown.Item>Public</Dropdown.Item>
+             <Dropdown.Item>Private</Dropdown.Item>
+           </Dropdown.Menu>
+         </Dropdown>
+      <Menu.Menu/>
+     <Menu.Item as='a'>Sign Up/Login</Menu.Item>
+    </Menu>
+)
 
-const NavBarChildren = ({ children }) => (
-  <Container style={{ marginTop: "5em" }}>{children}</Container>
-);
-
-class NavBar extends Component {
-  state = {
-    visible: false
-  };
-
-  handlePusher = () => {
-    const { visible } = this.state;
-
-    if (visible) this.setState({ visible: false });
-  };
-
-  handleToggle = () => this.setState({ visible: !this.state.visible });
-
-  render() {
-    const { children, leftItems, rightItems } = this.props;
-    const { visible } = this.state;
-
-    return (
-      <div>
-        <Responsive {...Responsive.onlyMobile}>
-          <NavBarMobile
-            leftItems={leftItems}
-            onPusherClick={this.handlePusher}
-            onToggle={this.handleToggle}
-            rightItems={rightItems}
-            visible={visible}
-          >
-            <NavBarChildren>{children}</NavBarChildren>
-          </NavBarMobile>
-        </Responsive>
-        <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-          <NavBarDesktop leftItems={leftItems} rightItems={rightItems} />
-          <NavBarChildren>{children}</NavBarChildren>
-        </Responsive>
-      </div>
-    );
-  }
-}
-
-const leftItems = [
-  { as: "a", content: "Home", key: "home" },
-  { as: "a", content: "Rooms", key: "users" }
-];
-const rightItems = [
-  { as: "a", content: "Make A Room", key: "make a room" },
-  { as: "a", content: "Register/Login", key: "register/login" }
-];
+const NavbarMobile = (props) => (
+  <Menu fixed="top" inverted>
+    <Menu.Item>
+      <Image size="mini" src={logo} />
+    </Menu.Item>
+     <Menu.Item as='a'>
+       <div className='hvr-grow'>
+         <Icon size='big' name='home'/>
+       </div>
+     </Menu.Item>
+      <Search
+        placeholder='Search For Rooms'
+        className='centered-search'
+      />
+      <Menu.Menu position='right'></Menu.Menu>
+        <Dropdown floating item icon='bars'>
+          <Dropdown.Menu style={{right: 0, left: "auto"}}>
+            <Dropdown.Item>
+              <Dropdown text='Make A Room'>
+                <Dropdown.Menu>
+                  <Dropdown.Item>Public</Dropdown.Item>
+                  <Dropdown.Item>Private</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Dropdown.Item>
+           <Dropdown.Item>Sign Up/Login</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      <Menu.Menu/>
+    </Menu>
+)
 
 const NavbarMain = () => (
-  <NavBar leftItems={leftItems} rightItems={rightItems}/>
-);
+  <div>
+    <Responsive minWidth={800}>
+      <NavbarDesktop/>
+    </Responsive>
+    <Responsive maxWidth={800}>
+      <NavbarMobile/>
+    </Responsive>
+  </div>
+)
 
 export default NavbarMain;

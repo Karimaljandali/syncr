@@ -1,7 +1,8 @@
 body{
-  background-color: #faf9fa;
+  background-color: #f1eef1;
 }
 
+/* semantic-ui related css */
 .ui.fluid.container{
   padding-top: 10px;
   margin-top: 90px;
@@ -15,6 +16,35 @@ body{
   box-shadow: 3px 3px 3px #ccc;
 }
 
+.ui.input{
+  top: 18%;
+}
+
+.ui.search{
+  width: 50%;
+}
+
+.ui.icon.input{
+  width: 100%;
+}
+
+.ui.icon.input>input {
+    padding-right: 30%!important;
+}
+
+.ui.menu .item>i.icon{
+  margin: 0;
+}
+
+.ui.dropdown .menu>.item .dropdown.icon {
+ float: none !important;
+}
+
+.ui.dropdown .menu .item .dropdown.icon:before{
+  content: '\f0d7'
+}
+
+/* App specific css */
 p.viewer-count{
   float: right;
   color: red;
@@ -26,9 +56,20 @@ img.viewer-count{
   width: 4%;
 }
 
+.centered-search{
+  left: 3%;
+}
 
-@media only screen and (max-width: 767px){
-.ui.fluid.container{
-    margin-top: 20px !important;
-  }
+.emoji-mart-opener{
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.emoji-mart-tooltip{
+  pointer-events: auto !important;
+}
+
+/* React-tooltip css */
+.__react_component_tooltip.show{
+  opacity: 1;
 }

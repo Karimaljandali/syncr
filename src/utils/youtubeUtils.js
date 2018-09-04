@@ -54,10 +54,9 @@ export function onYouTubeIframeAPIReady(id) {
   //use the standard provided by Google. PlayerVars origin setting
   //MUST be set or else you will receive a Failed To Execute 'postMessage'
   //error which basically means you cannot use any of the API.
-  console.log(id);
   var player = new window.YT.Player('player', {
-    height: '480vw',
-    width: '90%',
+    height: '460vw',
+    width: '85%',
     videoId: id,
     playerVars: {
       'origin': "http://localhost:3000",
@@ -68,4 +67,10 @@ export function onYouTubeIframeAPIReady(id) {
       'onStateChange': onPlayerStateChange
     }
   });
+}
+
+export function getVideoThumbnail(id){
+  var template = 'https://img.youtube.com/vi/';
+  template += id + 'hqdefault.jpg';
+  return template;
 }
