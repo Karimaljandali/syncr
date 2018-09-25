@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import NavbarMain from './navbar';
+import EmojiPicker from './emoji';
 import Events from '../utils/socketEvents';
 import userNameGenerator from '../utils/userNamesTest';
 import axios from 'axios';
 import viewers from '../img/viewers.png';
-import ReactTooltip from 'react-tooltip'
-import { Picker } from 'emoji-mart'
+import ReactTooltip from 'react-tooltip';
 import { Container, Header, Button, Input } from 'semantic-ui-react'
 import {
   changeBorderColor,
@@ -128,7 +128,7 @@ class Syncr extends Component {
     //to the socket. Don't actually need the url, just the id
     //but as a failsafe the url is sent with it.
     onYouTubeIframeAPIReady(reg_id);
-    this.youtubePlayerCreated([reg_id,this.state.youtubeUrlValue]);
+    this.youtubePlayerCreated([reg_id, this.state.youtubeUrlValue]);
   }
 
   getViewerCount = () => {
@@ -149,28 +149,16 @@ class Syncr extends Component {
      <div>
        <NavbarMain/>
         <Container fluid>
-          <Header as='h2'>Today's Video Playlist Theme: <br/>Overwatch</Header>
+          <Header as='h2'>Today's Youtube Queue</Header>
             <br></br>
               <Input id="youtubeurl" placeholder="Paste a Youtube URL" onChange={this.updateVal}></Input>
              <Button positive onClick={this.createYoutubePlayer}>Create Youtube Player</Button>
             <br></br>
            <div id="player"></div>
-            <div>
-              <span
-                className='emoji-mart-opener hvr-grow'
-                data-event='click'
-                data-tip
-                data-for='emoji-mart'
-                data-scroll-hide='false'
-                >
-                😊
-              </span>
+            <EmojiPicker>
               <Input id="chatmessage" type="text" placeholder="Send a chat message." value={this.state.chatValue} onChange={this.updateVal}></Input>
-             <Button positive type="button" onClick={this.submitChatMessage}>Submit</Button>
-            </div>
-           <ReactTooltip className="emoji-mart-tooltip" id='emoji-mart' type='light' place='top' effect='solid'>
-             <Picker title='Pick An Emoji' set='emojione' />
-           </ReactTooltip>
+              <Button positive type="button" onClick={this.submitChatMessage}>Submit</Button>
+            </EmojiPicker>
            <img data-tip data-for='viewer-count' className='viewer-count' src={viewers} alt=''/>
           <ReactTooltip id='viewer-count' place='top' effect='solid'>
             <span>Viewers</span>

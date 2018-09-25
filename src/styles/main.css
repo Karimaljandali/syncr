@@ -1,9 +1,17 @@
-body{
+.light{
   background-color: #f1eef1;
 }
 
-/* semantic-ui related css */
-.ui.fluid.container{
+.dark{
+  background-color: #202225;
+}
+
+#theme-toggle-label{
+  color: white!important;
+}
+
+/* LIGHT THEME STYLES */
+body.light .ui.fluid.container{
   padding-top: 10px;
   margin-top: 90px;
   margin-bottom: 20px;
@@ -11,36 +19,36 @@ body{
   overflow: hidden;
   background-color: white;
   width: 90%;
-  -moz-box-shadow: 3px 3px 3px #ccc;
-  -webkit-box-shadow: 3px 3px 3px #ccc;
-  box-shadow: 3px 3px 3px #ccc;
+  -moz-box-shadow: 0px 3px 8px rgb(100,100,100);
+  -webkit-box-shadow: 0px 3px 8px rgb(100,100,100);
+  box-shadow: 0px 3px 8px rgb(100,100,100);
 }
 
-.ui.input{
+body.light .ui.input{
   top: 18%;
 }
 
-.ui.search{
-  width: 50%;
+body.light .ui.search{
+  width: 33%;
 }
 
-.ui.icon.input{
+body.light .ui.icon.input{
   width: 100%;
 }
 
-.ui.icon.input>input {
+body.light .ui.icon.input>input {
     padding-right: 30%!important;
 }
 
-.ui.menu .item>i.icon{
+body.light .ui.menu .item>i.icon{
   margin: 0;
 }
 
-.ui.dropdown .menu>.item .dropdown.icon {
+body.light .ui.dropdown .menu>.item .dropdown.icon {
  float: none !important;
 }
 
-.ui.dropdown .menu .item .dropdown.icon:before{
+body.light .ui.dropdown .menu .item .dropdown.icon:before{
   content: '\f0d7'
 }
 
@@ -56,20 +64,152 @@ img.viewer-count{
   width: 4%;
 }
 
-.centered-search{
+body.light .centered-search{
   left: 3%;
 }
 
-.emoji-mart-opener{
+body.light .emoji-mart-opener{
   font-size: 25px;
   cursor: pointer;
 }
 
-.emoji-mart-tooltip{
+body.light .emoji-mart-tooltip{
   pointer-events: auto !important;
 }
 
 /* React-tooltip css */
-.__react_component_tooltip.show{
+body.light .__react_component_tooltip.show{
   opacity: 1;
+}
+
+body.light .emoji-mart{
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    display: inline-block;
+    color: black;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    background: #fff;
+}
+
+body.light .emoji-mart-category-label span {
+    display: block;
+    width: 100%;
+    font-weight: 500;
+    padding: 5px 6px;
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, .95);
+}
+
+body.light .__react_component_tooltip {
+  background-color: #fff;
+}
+
+/* DARK THEME STYLES  */
+body.dark .ui.fluid.container{
+  padding-top: 10px;
+  margin-top: 90px;
+  margin-bottom: 20px;
+  text-align: center;
+  overflow: hidden;
+  background-color: #2c2e33;
+  width: 90%;
+  -moz-box-shadow: 0px 3px 8px #ccc;
+  -webkit-box-shadow: 0px 3px 8px #ccc;
+  box-shadow: 0px 3px 8px black;
+}
+
+body.dark .ui.input{
+  top: 18%;
+  background-color: rgba(114,118,125,.3);
+}
+
+body.dark .ui.header{
+  color: #D0D0D0;
+}
+
+body.dark .ui.search{
+  width: 33%;
+}
+
+body.dark .ui.icon.input{
+  width: 100%;
+}
+
+body.dark .ui.icon.input>input {
+  padding-right: 30%!important;
+}
+
+body.dark .ui.menu .item>i.icon{
+  margin: 0;
+}
+
+body.dark .ui.dropdown .menu>.item .dropdown.icon {
+ float: none !important;
+}
+
+body.dark .ui.dropdown .menu .item .dropdown.icon:before{
+  content: '\f0d7'
+}
+
+/* App specific css */
+p.viewer-count{
+  float: right;
+  color: red;
+}
+
+img.viewer-count{
+  float: right;
+  height: 4%;
+  width: 4%;
+}
+
+body.dark .centered-search{
+  left: 3%;
+}
+
+body.dark .emoji-mart-opener{
+  font-size: 25px;
+  cursor: pointer;
+}
+
+body.dark .emoji-mart-tooltip{
+  pointer-events: auto !important;
+}
+
+/* React-tooltip css */
+body.dark .__react_component_tooltip.show{
+  opacity: 1;
+}
+
+body.dark .emoji-mart{
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    display: inline-block;
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+    background: #2c2e33;
+}
+
+body.dark .emoji-mart-category-label span {
+    display: block;
+    width: 100%;
+    font-weight: 500;
+    padding: 5px 6px;
+    background-color: #27292d;
+}
+
+body.dark .__react_component_tooltip {
+  background-color: #222;
+}
+
+@media only screen and (max-width: 800px){
+  body.light .ui.search{
+    width: 50%;
+  }
+
+  body.dark .ui.search{
+    width: 50%;
+  }
 }

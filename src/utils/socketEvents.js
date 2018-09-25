@@ -22,6 +22,11 @@ const Events = {
       socket.on('youtube player created', (message) => {
         onYouTubeIframeAPIReady(message[0]);
       })
+    },
+    updateViewers(room){
+      socket.on('update view count', (message) => {
+        console.log('Updating view count.');
+      })
     }
   },
   emit:{
@@ -29,7 +34,10 @@ const Events = {
       socket.emit('chat message', `User: ${message[0]} said ${message[1]}`);
     },
     youtubePlayerCreated(message){
-      socket.emit('youtube player created', message)
+      socket.emit('youtube player created', message);
+    },
+    updateViewers(message){
+      socket.emit('update view count', message);
     }
   }
 }
